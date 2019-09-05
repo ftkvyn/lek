@@ -8,8 +8,14 @@
 module.exports = {
 	createMany: function(req,res){
 		console.log(req.body);
-		var questions = Question.createEach(req.body.data).fetch();
-		res.json(questions);
+		Question.createEach(req.body.data)
+		.exec((err, data) => {
+			if(err) {
+				console.error(err);
+			}
+			res.json(data);
+		});
+		
 	}
 
 };
