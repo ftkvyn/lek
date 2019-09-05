@@ -70,7 +70,7 @@
 				url: '/api/cource/' + id,
 				type: 'DELETE',
 				success: function(result) {
-					btn.parent().remove();
+					btn.parent().parent().remove();
 				}
 			});
 		});
