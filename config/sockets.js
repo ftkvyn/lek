@@ -46,7 +46,7 @@ module.exports.sockets = {
   //
   //   // `true` allows the socket to connect.
   //   // (`false` would reject the connection)
-     return proceed(undefined, false);
+     return proceed(undefined, true);
   //
   },
 

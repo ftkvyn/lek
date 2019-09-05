@@ -12,7 +12,7 @@
 <script type="text/javascript">
 	$(() => {
 		const list = $('#list');
-		$.get('/api/cources')
+		$.get('/api/cource')
 		.then((data) => {
 			console.log(data);
 			data.forEach(item => {
@@ -30,7 +30,7 @@
 				return;
 			}
 			newName.val('');
-			$.post('/api/cources', model)
+			$.post('/api/cource', model)
 			.then((data) => {
 				const markup = `<li>${item.name}</li>`;
 				list.add(markup);
