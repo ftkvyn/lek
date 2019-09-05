@@ -1,5 +1,5 @@
 body {
-	background: #f6eccd;
+	background: #d4def8;
 	    font-family: Helvetica;
 }
 
@@ -103,12 +103,29 @@ ul {
 	list-style: none;
 }
 
+.number {
+	    display: block;
+    text-align: center;
+    font-size: 40px;
+    border-top: 1px solid #4c82a4;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-weight: bold;
+}
+
+.question-item {
+	border-bottom: 1px solid #4c82a4;
+	padding-bottom: 10px;
+	background: #c3d2f6;
+	text-align: center;
+}
+
 #questions li {
 	margin-bottom: 20px;
 }
 
 .new-vals {
-	padding-left: 40px;
+	padding-left: 0px;
 }
 
 .new-vals input {
@@ -139,20 +156,20 @@ ul {
 
 .set-val {
 	font-size: 40px;
-    margin: 20px;
-    padding: 30px;
+    margin: 10px;
+    padding: 20px;
 	border: 1px solid gray;
-	background: white;
+	background: #5186a6;
+	color: white;
 	box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.46);
 }
 
 #score-board {
-	display: inline-block;
+	text-align: center;
     clear: both;
     padding: 20px;
-    background: #347684;
+    background: #3c82d7;
     color: white;
-    margin-left: 40px;
 	font-weight: normal;
 	box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.46);
 }
