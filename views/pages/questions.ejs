@@ -45,7 +45,7 @@
 			questions.append(markup);
 		}
 
-		$.get('/api/cource')
+		$.get('/api/getAllCources')
 		.then((data) => {
 			cources = data;
 			data.forEach(renderBtn);

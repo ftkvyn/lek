@@ -6,7 +6,15 @@
  */
 
 module.exports = {
-  
-
+    getAll: function (req, res) {
+        Cource.find({})
+            .populate('questions')
+            .exec((err, data) => {
+                if (err) {
+                    console.error(err);
+                }
+                res.json(data);
+            });
+    }
 };
 

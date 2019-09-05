@@ -27,6 +27,8 @@ module.exports.routes = {
 
   'post /api/question/createMany' : 'QuestionController.createMany',
 
+  'get /api/getAllCources' : 'CourceController.getAll',
+
 
   /***************************************************************************
   *                                                                          *
