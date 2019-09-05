@@ -15,7 +15,7 @@
 		const list = $('#list');
 
 		function renderBtn(item) {
-			const markup = `<li><span>${item.name}</span><button class='delete' data-id='${item.id}'>X</button></li>`;
+			const markup = `<li><span class='name'>${item.name}</span><span>(${item.questions.length})</span><button class='delete' data-id='${item.id}'>X</button></li>`;
 			list.append(markup);
 		}
 
@@ -55,7 +55,7 @@
 
 		$('body').on('click', '.delete', function(e){
 			const btn = $(e.target);
-			const name = btn.parent().find('span').text();
+			const name = btn.parent().find('.name').text();
 			if(!confirm('Are you sure you want to delete cource ' + name + ' with all questions?')) {
 				return;
 			}
