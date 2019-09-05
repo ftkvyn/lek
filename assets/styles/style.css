@@ -3,6 +3,10 @@ body {
 	    font-family: Helvetica;
 }
 
+ul {
+	padding: 0;
+}
+
 ul li {
 	text-align: center;
 }
