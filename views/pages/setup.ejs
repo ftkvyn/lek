@@ -17,7 +17,7 @@
 	$(() => {
 		const list = $('#list');
 		const questions = $('#questions');
-		const cources = [];
+		let cources = [];
 
 		function renderBtn(item) {
 			const markup = `<li>
@@ -102,7 +102,7 @@
 		});
 	
 		list.on('click', 'li', function(e) {
-			const li = $(e.target);
+			const li = $(e.target).closest('li');
 			const id = li.find('div').attr('data-id');
 			$('li.active').removeClass('active');
 			li.addClass('active');
