@@ -19,7 +19,8 @@ module.exports = {
 	},
 
 	cource:{
-		model:'Cource'
+		model:'Cource',
+		required:true
 	},
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗

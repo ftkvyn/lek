@@ -13,6 +13,7 @@ module.exports = {
 			if(err) {
 				console.error(err);
 			}
+			console.log(data);
 			res.json(data);
 		});
 		
