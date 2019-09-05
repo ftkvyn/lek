@@ -34,5 +34,11 @@ module.exports = {
 
   },
 
+  beforeDestroy: function(criteria, cb) {
+		Question.destroy({cource: criteria.where.id}).exec(function (err, destroyed){
+		if (err) return cb(err);
+		cb();
+		})
+	}
 };
 
