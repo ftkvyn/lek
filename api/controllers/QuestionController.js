@@ -7,7 +7,7 @@
 
 module.exports = {
 	createMany: function(req,res){
-		console.log(req.body);
+		// console.log(req.body);
 		Question.createEach(req.body.data)
 		.fetch()
 		.exec((err, data) => {

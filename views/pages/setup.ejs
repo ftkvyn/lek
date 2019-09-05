@@ -15,7 +15,11 @@
 		const list = $('#list');
 
 		function renderBtn(item) {
-			const markup = `<li><span class='name'>${item.name}</span><span>(${item.questions.length})</span><button class='delete' data-id='${item.id}'>X</button></li>`;
+			const markup = `<li>
+				<div class='cource-item'>
+					<span class='name'>${item.name}</span> <span class='num'>(${item.questions.length})</span><button class='delete' data-id='${item.id}'>X</button>
+				</div>
+			</li>`;
 			list.append(markup);
 		}
 
@@ -38,7 +42,6 @@
 			newNum.val('');
 			$.post('/api/cource', model)
 			.then((item) => {
-				renderBtn(item);
 				const questions = [];
 				for(let i = 0; i < num; i++){
 					questions.push({
@@ -48,7 +51,8 @@
 				}
 				$.post('/api/question/createMany', {data: questions} )
 				.then((items) => {
-					console.log(items);
+					item.questions = items;
+					renderBtn(item);
 				});
 			});
 		});
