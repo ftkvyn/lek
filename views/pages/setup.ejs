@@ -113,7 +113,23 @@
 
 		$('body').on('click', '.set-val', function(e){
 			const btn = $(e.target);
-			btn.addClass('selected');
+			const li = btn.closest('li');
+			const id = li.find('div').attr('data-id');
+			const old = li.find('.selected');
+			const answer = btn.text();
+			$.ajax({
+				url: '/api/question/' + id,
+				data: {
+					answer: answer
+				},
+				type: 'PUT',
+				success: function(result) {
+					if(old.length) {
+						old.removeClass('selected');
+					}
+					btn.addClass('selected');
+				}
+			});
 		});
 	});
 </script>
