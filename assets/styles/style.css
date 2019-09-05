@@ -1,3 +1,16 @@
 body {
 	background: navajowhite;
 }
+
+button.selected {
+	background: green;
+}
+
+li.active {
+	border: 1px solid gray;
+	border-radius: 10px;
+}
+
+li {
+	cursor: pointer;
+}

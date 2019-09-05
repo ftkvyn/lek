@@ -32,11 +32,11 @@
 			const markup = `<li>
 				<div class='question-item' data-id='${item.id}'>
 					<span class='number'>${item.number}</span>
-					<button class='set-val'>A</button>
-					<button class='set-val'>B</button>
-					<button class='set-val'>C</button>
-					<button class='set-val'>D</button>
-					<button class='set-val'>E</button>
+					<button class='set-val ${(item.answer == 'A' ? 'selected' : '')}'>A</button>
+					<button class='set-val ${(item.answer == 'B' ? 'selected' : '')}''>B</button>
+					<button class='set-val ${(item.answer == 'C' ? 'selected' : '')}''>C</button>
+					<button class='set-val ${(item.answer == 'D' ? 'selected' : '')}''>D</button>
+					<button class='set-val ${(item.answer == 'E' ? 'selected' : '')}''>E</button>
 				</div>
 			</li>`;
 			questions.append(markup);
@@ -103,12 +103,17 @@
 	
 		list.on('click', 'li', function(e) {
 			const li = $(e.target);
-			const id = btn.parent().attr('data-id');
+			const id = li.find('div').attr('data-id');
 			$('li.active').removeClass('active');
 			li.addClass('active');
 			const cource = cources.find(c => c.id === id);
 			questions.empty();
 			cource.questions.forEach(renderQuestion);
+		});
+
+		$('body').on('click', '.set-val', function(e){
+			const btn = $(e.target);
+			btn.addClass('selected');
 		});
 	});
 </script>
