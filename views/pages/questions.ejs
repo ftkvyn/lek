@@ -1,4 +1,4 @@
-<div id="questions" v-cloak>
+<div id="questions-container" v-cloak>
 
   <h1>Questions</h1>
 
@@ -59,7 +59,7 @@
 		$('body').on('click', '.set-val', function(e){
 			const btn = $(e.target);
 			const li = btn.closest('li');
-			if(li.is('answered')) {
+			if(li.is('.answered')) {
 				return;
 			}
 			const id = li.find('div').attr('data-id');
@@ -72,6 +72,7 @@
 				btn.addClass('selected');
 			} else {
 				btn.addClass('wrong');
+				li.find(`[data-val=${question.answer}]`).addClass('selected');
 			}
 			li.addClass('answered');
 		});
