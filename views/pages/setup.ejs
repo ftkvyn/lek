@@ -46,7 +46,7 @@
 						cource: item.id
 					});
 				}
-				$.post('/api/question/createMany', questions)
+				$.post('/api/question/createMany', {data: questions} )
 				.then((items) => {
 					console.log(items);
 				});

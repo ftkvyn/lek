@@ -7,7 +7,8 @@
 
 module.exports = {
 	createMany: function(req,res){
-		var questions = Question.createEach(req.body).fetch();
+		console.log(req.body);
+		var questions = Question.createEach(req.body.data).fetch();
 		res.json(questions);
 	}
 
