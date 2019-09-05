@@ -19,11 +19,11 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/index' },
+  '/': 'ViewsController.index',
 
-  '/setup': { view: 'pages/setup' },
+  '/setup': 'ViewsController.setup',
 
-  '/questions': { view: 'pages/questions' },
+  '/questions': 'ViewsController.questions',
 
 
   /***************************************************************************

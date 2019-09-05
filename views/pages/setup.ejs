@@ -1,6 +1,42 @@
 <div id="setup" v-cloak>
 
-  <h1>Setup</h1>
+  <h1>Cources</h1>
+  <ul id='list'>
+	  
+  </ul>
+  <input type="text" id="new-name" />
+  <button id='add'>Add</button>
 
 </div>
+
+<script type="text/javascript">
+	$(() => {
+		const list = $('#list');
+		$.get('/api/cources')
+		.then((data) => {
+			console.log(data);
+			data.forEach(item => {
+				const markup = `<li>${item.name}</li>`;
+				list.add(markup);
+			});
+		});
+
+		const newName = $('#new-name');
+		$('body').on('click', '#add', function(){
+			const model = {
+				name : newName.val()
+			};
+			if(!model.name){
+				return;
+			}
+			newName.val('');
+			$.post('/api/cources', model)
+			.then((data) => {
+				const markup = `<li>${item.name}</li>`;
+				list.add(markup);
+				console.log(data);
+			});
+		});
+	});
+</script>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
