@@ -1,6 +1,8 @@
-<div id="questions-container" v-cloak>
+<div id="questions-container" class="content" v-cloak>
 
   <h1>Questions</h1>
+<a href="/">Back</a><br />
+  <h2 id="score-board">Score: <span id="score">0 / 0</span></h2>
 
   <ul id='list'>
 	  
@@ -14,13 +16,16 @@
 	$(() => {
 		const list = $('#list');
 		const questions = $('#questions');
+		const score = $('#score');
 		let cources = [];
 		let cource = {};
+		let total = 0;
+		let right = 0;
 
 		function renderBtn(item) {
 			const markup = `<li>
 				<div class='cource-item' data-id='${item.id}'>
-					<span class='name'>${item.name}</span> <span class='num'>(${item.questions.length})</span><button class='delete'>X</button>
+					<span class='name'>${item.name}</span> <span class='num'>(${item.questions.length})</span>
 				</div>
 			</li>`;
 			list.append(markup);
@@ -70,11 +75,14 @@
 				btn.addClass('unknown');
 			}else if(question.answer === answer) {
 				btn.addClass('selected');
+				total ++; right ++;
 			} else {
+				total ++;
 				btn.addClass('wrong');
 				li.find(`[data-val=${question.answer}]`).addClass('selected');
 			}
 			li.addClass('answered');
+			score.text(`${right} / ${total}`);
 		});
 	});
 </script>
