@@ -6,6 +6,14 @@ button.selected {
 	background: green;
 }
 
+button.wrong {
+	background: red;
+}
+
+button.unknown {
+	background: purple;
+}
+
 li.active div {
 	border: 1px solid gray;
 	border-radius: 10px;
@@ -13,4 +21,8 @@ li.active div {
 
 li {
 	cursor: pointer;
+}
+
+#questions li {
+	margin-bottom: 20px;
 }

@@ -2,5 +2,79 @@
 
   <h1>Questions</h1>
 
+  <ul id='list'>
+	  
+	</ul>
+
+	<ul id='questions'>
+	  
+	</ul>
+
+<script type="text/javascript">
+	$(() => {
+		const list = $('#list');
+		const questions = $('#questions');
+		let cources = [];
+		let cource = {};
+
+		function renderBtn(item) {
+			const markup = `<li>
+				<div class='cource-item' data-id='${item.id}'>
+					<span class='name'>${item.name}</span> <span class='num'>(${item.questions.length})</span><button class='delete'>X</button>
+				</div>
+			</li>`;
+			list.append(markup);
+		}
+
+		function renderQuestion(item) {
+			const markup = `<li>
+				<div class='question-item' data-id='${item.id}' data-answer='${item.answer}'>
+					<span class='number'>${item.number}</span>
+					<button class='set-val' data-val='A'>A</button>
+					<button class='set-val' data-val='B'>B</button>
+					<button class='set-val' data-val='C'>C</button>
+					<button class='set-val' data-val='D'>D</button>
+					<button class='set-val' data-val='E'>E</button>
+				</div>
+			</li>`;
+			questions.append(markup);
+		}
+
+		$.get('/api/cource')
+		.then((data) => {
+			cources = data;
+			data.forEach(renderBtn);
+		});
+
+		list.on('click', 'li', function(e) {
+			const li = $(e.target).closest('li');
+			const id = li.find('div').attr('data-id');
+			$('li.active').removeClass('active');
+			li.addClass('active');
+			cource = cources.find(c => c.id === id);
+			questions.empty();
+			cource.questions.forEach(renderQuestion);
+		});
+
+		$('body').on('click', '.set-val', function(e){
+			const btn = $(e.target);
+			const li = btn.closest('li');
+			if(li.is('answered')) {
+				return;
+			}
+			const id = li.find('div').attr('data-id');
+			const answer = btn.text();
+
+			const question = cource.questions.find(c => c.id === id);
+			if(!question.answer) {
+				btn.addClass('unknown');
+			}else if(question.answer === answer) {
+				btn.addClass('selected');
+			} else {
+				btn.addClass('wrong');
+			}
+			li.addClass('answered');
+		});
+	});
+</script>
 </div>
-<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
