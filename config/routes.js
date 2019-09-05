@@ -25,6 +25,8 @@ module.exports.routes = {
 
   '/questions': 'ViewsController.questions',
 
+  'post /api/question/createMany' : 'QuestionController.createMany',
+
 
   /***************************************************************************
   *                                                                          *

@@ -28,23 +28,28 @@
 		const newNum = $('#new-num');
 		$('body').on('click', '#add', function(){
 			const model = {
-				name : newName.val(),
-				questions : []
+				name : newName.val()
 			};
 			const num = newNum.val();
 			if(!model.name || !num){
 				return;
-			}
-			for(let i = 0; i < num; i++){
-				model.questions.push({
-					number: i + 1
-				});
 			}
 			newName.val('');
 			newNum.val('');
 			$.post('/api/cource', model)
 			.then((item) => {
 				renderBtn(item);
+				const questions = [];
+				for(let i = 0; i < num; i++){
+					questions.push({
+						number: i + 1,
+						cource: item.id
+					});
+				}
+				$.post('/api/question/createMany', questions)
+				.then((items) => {
+					console.log(items);
+				});
 			});
 		});
 

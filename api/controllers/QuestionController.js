@@ -6,7 +6,10 @@
  */
 
 module.exports = {
-  
+	createMany: function(req,res){
+		var questions = Question.createEach(req.body).fetch();
+		res.json(questions);
+	}
 
 };
 
