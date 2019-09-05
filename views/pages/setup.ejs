@@ -18,6 +18,7 @@
 		const list = $('#list');
 		const questions = $('#questions');
 		let cources = [];
+		let cource = {};
 
 		function renderBtn(item) {
 			const markup = `<li>
@@ -106,7 +107,7 @@
 			const id = li.find('div').attr('data-id');
 			$('li.active').removeClass('active');
 			li.addClass('active');
-			const cource = cources.find(c => c.id === id);
+			cource = cources.find(c => c.id === id);
 			questions.empty();
 			cource.questions.forEach(renderQuestion);
 		});
@@ -128,6 +129,8 @@
 						old.removeClass('selected');
 					}
 					btn.addClass('selected');
+					const question = cource.questions.find(c => c.id === id);
+					question.answer = answer;
 				}
 			});
 		});
