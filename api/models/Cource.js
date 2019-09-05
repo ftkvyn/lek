@@ -13,6 +13,11 @@ module.exports = {
 		type:'string',
 		required:true
 	},
+
+	questions:{
+		collection:'Question',
+		via:'cource'
+	},
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝

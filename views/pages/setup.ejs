@@ -4,49 +4,63 @@
   <ul id='list'>
 	  
   </ul>
-  <input type="text" id="new-name" />
+  <input type="text" id="new-name" placeholder="Name" />
+  <input type="number" id="new-num" placeholder="Number" />
   <button id='add'>Add</button>
 
 </div>
 
 <script type="text/javascript">
+	function renderBtn(item) {
+		const markup = `<li><span>${item.name}</span><button class='delete' data-id='${item.id}'>X</button></li>`;
+		list.append(markup);
+	}
+
 	$(() => {
 		const list = $('#list');
 		$.get('/api/cource')
 		.then((data) => {
-			console.log(data);
-			data.forEach(item => {
-				const markup = `<li>${item.name}<button class='delete' data-id='${item.id}'>X</button></li>`;
-				list.append(markup);
-			});
+			data.forEach(item => renderBtn);
 		});
 
 		const newName = $('#new-name');
+		const newNum = $('#new-num');
 		$('body').on('click', '#add', function(){
 			const model = {
-				name : newName.val()
+				name : newName.val(),
+				questions : []
 			};
-			if(!model.name){
+			const num = newNum.val();
+			if(!model.name || !num){
 				return;
 			}
+			for(let i = 0; i < num; i++){
+				questions.push({
+					number: i + 1
+				});
+			}
 			newName.val('');
+			newNum.val('');
 			$.post('/api/cource', model)
 			.then((item) => {
-				const markup = `<li>${item.name}</li>`;
-				list.append(markup);
-				console.log(item);
+				renderBtn(item);
 			});
 		});
 
 		$('body').on('click', '.delete', function(e){
 			const btn = $(e.target);
+			const name = btn.parent().find('span').text();
+			if(!confirm('Are you sure you want to delete cource ' + name + ' with all questions?')) {
+				return;
+			}
+			
 			const id = btn.attr('data-id');
 
 			$.ajax({
 				url: '/api/cource/' + id,
 				type: 'DELETE',
 				success: function(result) {
-					btn.parent.remove();
+					btn.parent().remove();
 				}
 			});
 		});
