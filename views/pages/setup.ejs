@@ -16,8 +16,8 @@
 		.then((data) => {
 			console.log(data);
 			data.forEach(item => {
-				const markup = `<li>${item.name}</li>`;
-				list.add(markup);
+				const markup = `<li>${item.name}<button class='delete' data-id='${item.id}'>X</button></li>`;
+				list.append(markup);
 			});
 		});
 
@@ -31,10 +31,23 @@
 			}
 			newName.val('');
 			$.post('/api/cource', model)
-			.then((data) => {
+			.then((item) => {
 				const markup = `<li>${item.name}</li>`;
-				list.add(markup);
-				console.log(data);
+				list.append(markup);
+				console.log(item);
+			});
+		});
+
+		$('body').on('click', '.delete', function(e){
+			const btn = $(e.target);
+			const id = btn.attr('data-id');
+
+			$.ajax({
+				url: '/api/cource/' + id,
+				type: 'DELETE',
+				success: function(result) {
+					btn.parent.remove();
+				}
 			});
 		});
 	});
