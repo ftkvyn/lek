@@ -58,7 +58,9 @@
 			li.addClass('active');
 			cource = cources.find(c => c.id === id);
 			questions.empty();
-			cource.questions.forEach(renderQuestion);
+			cource.questions
+			.sort((a, b) => a.number - b.number)
+			.forEach(renderQuestion);
 		});
 
 		$('body').on('click', '.set-val', function(e){
