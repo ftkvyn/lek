@@ -21,7 +21,7 @@
 
 		$.get('/api/cource')
 		.then((data) => {
-			data.forEach(item => renderBtn);
+			data.forEach(renderBtn);
 		});
 
 		const newName = $('#new-name');
