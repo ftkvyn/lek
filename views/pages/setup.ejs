@@ -5,19 +5,20 @@
 	  
   </ul>
   <input type="text" id="new-name" placeholder="Name" />
-  <input type="number" id="new-num" placeholder="Number" />
+  <input type="number" id="new-num" placeholder="Number of questions" />
   <button id='add'>Add</button>
 
 </div>
 
 <script type="text/javascript">
-	function renderBtn(item) {
-		const markup = `<li><span>${item.name}</span><button class='delete' data-id='${item.id}'>X</button></li>`;
-		list.append(markup);
-	}
-
 	$(() => {
 		const list = $('#list');
+
+		function renderBtn(item) {
+			const markup = `<li><span>${item.name}</span><button class='delete' data-id='${item.id}'>X</button></li>`;
+			list.append(markup);
+		}
+
 		$.get('/api/cource')
 		.then((data) => {
 			data.forEach(item => renderBtn);
