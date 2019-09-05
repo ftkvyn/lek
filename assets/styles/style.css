@@ -162,7 +162,7 @@ ul {
 	background: #5186a6;
 	color: white;
 	box-shadow: 2px 3px 5px 0px rgba(0,0,0,0.46);
-	transition: background-color 0.3s;
+	transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 #score-board {
