@@ -42,6 +42,8 @@
     <%- body %>
     </div>
 
+    <div class="up-btn"></div>
+
 
     <!--
         Client-side Templates
@@ -106,6 +108,14 @@
           + Use a different preprocessor, like TypeScript
 
     -->
+
+    <script type="text/javascript">
+      $(() => {
+        $('body').on('click', '.up-btn', function () {
+            $("html, body").animate({ scrollTop: 0 }, 500);
+        });
+      });
+    </script>
 
   </body>
 </html>
