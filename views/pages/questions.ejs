@@ -12,6 +12,8 @@
 	  
 	</ul>
 
+	<button id='toggle'>Toggle correct</button>
+
 <script type="text/javascript">
 	$(() => {
 		const list = $('#list');
@@ -21,6 +23,7 @@
 		let cource = {};
 		let total = 0;
 		let right = 0;
+		let onlyWrong = false;
 
 		function renderBtn(item) {
 			const markup = `<li>
@@ -77,6 +80,7 @@
 				btn.addClass('unknown');
 			}else if(question.answer === answer) {
 				btn.addClass('selected');
+				li.addClass('correct');
 				total ++; right ++;
 			} else {
 				total ++;
@@ -85,6 +89,16 @@
 			}
 			li.addClass('answered');
 			score.text(`${right} / ${total}`);
+		});
+
+		$('body').on('click', '#toggle', function (e) {
+			onlyWrong = !onlyWrong;
+
+			if (onlyWrong) {
+				$('#questions li.correct').hide();
+			} else {
+				$('#questions li.correct').show();
+			}
 		});
 	});
 </script>

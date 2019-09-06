@@ -136,6 +136,7 @@ ul {
     border: 1px solid #ced7ac;
 }
 
+#toggle,
 .new-vals button {
 	display: inline-block;
     padding: 10px 20px;
