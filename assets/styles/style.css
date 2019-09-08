@@ -168,7 +168,10 @@ ul {
 
 #setup .question-item {
 	padding-top: 10px;
+}
 
+#setup .active .question-item {
+	background: #b3c2e6;
 }
 
 #setup .number {

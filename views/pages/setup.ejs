@@ -39,11 +39,11 @@
 			const markup = `<li>
 				<div class='question-item' data-id='${item.id}'>
 					<span class='number'>${item.number}</span>
-					<button class='set-val ${(item.answer == 'A' ? 'selected' : '')}'>A</button>
-					<button class='set-val ${(item.answer == 'B' ? 'selected' : '')}''>B</button>
-					<button class='set-val ${(item.answer == 'C' ? 'selected' : '')}''>C</button>
-					<button class='set-val ${(item.answer == 'D' ? 'selected' : '')}''>D</button>
-					<button class='set-val ${(item.answer == 'E' ? 'selected' : '')}''>E</button>
+					<button class='set-val ${(item.answer == 'A' ? 'selected' : '')}' data-val='A'>A</button>
+					<button class='set-val ${(item.answer == 'B' ? 'selected' : '')}' data-val='B'>B</button>
+					<button class='set-val ${(item.answer == 'C' ? 'selected' : '')}' data-val='C'>C</button>
+					<button class='set-val ${(item.answer == 'D' ? 'selected' : '')}' data-val='D'>D</button>
+					<button class='set-val ${(item.answer == 'E' ? 'selected' : '')}' data-val='E'>E</button>
 				</div>
 			</li>`;
 			questions.append(markup);
@@ -118,6 +118,7 @@
 			cource.questions
 			.sort((a, b) => a.number - b.number)
 			.forEach(renderQuestion);
+			questions.find('li').first().click();
 		});
 
 		$('body').on('click', '.set-val', function(e){
@@ -143,6 +144,52 @@
 				}
 			});
 		});
+
+		questions.on('click', 'li', function (e) {
+			const li = $(e.target).closest('li');
+			questions.find('.active').removeClass('active');
+			li.addClass('active');
+		});
+
+		$(window).on('keydown', function(e){
+			const li = questions.find('.active');
+			if(!li || !li.length) {
+				return;
+			}
+			let nextLi = li;
+			const key = e.originalEvent.key;
+			let value = null;
+			let navigate = false;
+			switch(key) {
+				case 'ArrowUp': 
+					nextLi = li.prev();
+					navigate = true;
+					break;
+				case 'ArrowDown':
+					nextLi = li.next();
+					navigate = true;
+					break;
+				default:
+					value = key.toUpperCase();
+			}
+
+			const btn = li.find(`.set-val[data-val=${value}]`);
+
+			if(btn && btn.length) {
+				nextLi = li.next();
+				btn.click();
+			}
+
+			if (!navigate && (!nextLi || !nextLi.length)) {
+				return;
+			}
+			li.removeClass('active');
+			nextLi.addClass('active');
+
+			$("html, body").animate({ scrollTop: nextLi.offset().top - 300 }, 100);
+
+			e.preventDefault();
+		})
 	});
 </script>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
