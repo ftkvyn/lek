@@ -156,7 +156,10 @@
 			if(!li || !li.length) {
 				return;
 			}
-			let nextLi = li;
+			if($(e.target).is('input')) {
+				return;
+			}
+			let nextLi = null;
 			const key = e.originalEvent.key;
 			let value = null;
 			let navigate = false;
